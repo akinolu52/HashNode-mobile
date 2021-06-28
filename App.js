@@ -1,34 +1,42 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
   useColorScheme,
-  View,
 } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { ThemeProvider } from 'styled-components'
+import { NavigationContainer } from '@react-navigation/native';
+import Router from '@components/Router';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query';
+import { AuthProvider } from '@utils';
 
-import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
+import 'react-native-gesture-handler';
+
+const queryClient = new QueryClient();
 
 const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const theme = {
+    mode: useColorScheme()
   };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}
-      />
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <ThemeProvider theme={theme}>
+        <NavigationContainer>
+          <QueryClientProvider client={queryClient}>
+            <AuthProvider>
+              <Router />
+            </AuthProvider>
+          </QueryClientProvider>
+        </NavigationContainer>
+      </ThemeProvider>
+
+    </SafeAreaProvider>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default App;

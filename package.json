@@ -3,18 +3,23 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "clean-modules": "rm -rf ./node_modules",
+    "clean": "rm -rf ./node_modules/ && yarn install && yarn run pod-install",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "pod-update": "cd ./ios && pod update && cd ..",
-    "postinstall": "yarn clean-modules && yarn pod-update",
+    "pod-install": "cd ./ios && pod install && cd ..",
+    "postinstall": "yarn pod-install",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.5",
+    "@react-native-clipboard/clipboard": "^1.8.2",
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-navigation/bottom-tabs": "^5.11.11",
     "@react-navigation/native": "^5.9.4",
+    "@react-navigation/stack": "^5.14.5",
+    "date-fns": "^2.22.1",
     "graphql-request": "^3.4.0",
     "react": "17.0.1",
     "react-native": "0.64.2",
@@ -24,7 +29,8 @@
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.4.0",
     "react-native-vector-icons": "^8.1.0",
-    "react-query": "^3.18.1"
+    "react-query": "^3.18.1",
+    "styled-components": "^5.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",

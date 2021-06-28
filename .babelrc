@@ -10,10 +10,11 @@
                     "."
                 ],
                 "alias": {
-                    // "@images": "./src/images",
+                    "@images": "./src/images",
+                    "@requests": "./src/requests",
                     "@components": "./src/components",
-                    // "@utils": "./src/utils",
-                    // "@screens": "./src/screens"
+                    "@utils": "./src/utils",
+                    "@screens": "./src/screens"
                 }
             }
         ]
