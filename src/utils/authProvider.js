@@ -27,7 +27,6 @@ export const AuthProvider = ({ children }) => {
     }
 
     const signIn = async token => {
-        console.log('token -> ', token);
         // call get user query
         AsyncStorage.setItem('@token', token);
     };
